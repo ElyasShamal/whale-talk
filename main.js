@@ -1,26 +1,42 @@
-let input = "turpentine and turtles";
+const input = "turpentine and turtles";
 const vowels = ["a", "e", "i", "o", "u"];
 const resultArray = [];
 
-let userInput = document.getElementById("user");
+const whaleButton = document.getElementById("whale-talk");
 
-for (let inputIndex = 0; inputIndex < input.length; inputIndex++) {
-  if (input[inputIndex] === "e") {
-    resultArray.push(input[inputIndex]);
-  }
+whaleButton.addEventListener("click", () => {
+  let userInput = document.getElementById("user").value;
+  const resultArray = [];
 
-  if (input[inputIndex] === "u") {
-    resultArray.push(input[inputIndex]);
-  }
+  for (let inputIndex = 0; inputIndex < userInput.length; inputIndex++) {
+    if (userInput[inputIndex] === "e" || userInput[inputIndex] === "u") {
+      resultArray.push(userInput[inputIndex]);
+    }
 
-  for (vowelIndex = 0; vowelIndex < vowels.length; vowelIndex++) {
-    if (input[inputIndex] === vowels[vowelIndex]) {
-      resultArray.push(input[inputIndex]);
+    for (let vowelIndex = 0; vowelIndex < vowels.length; vowelIndex++) {
+      if (userInput[inputIndex] === vowels[vowelIndex]) {
+        resultArray.push(userInput[inputIndex]);
+      }
     }
   }
-}
 
-const resultStr = resultArray.join("").toUpperCase();
-console.log(resultStr);
+  const resultStr = resultArray.join("").toUpperCase();
+  const newElements = document.getElementById("js-section");
+
+  const listItems = document.createElement("li");
+  newElements.appendChild(listItems);
+  listItems.innerHTML = resultStr;
+
+  const deleteButton = document.createElement("button");
+  deleteButton.innerHTML = "Delete";
+  deleteButton.className = "delete-button";
+  deleteButton.addEventListener("click", () => {
+    newElements.removeChild(listItems);
+  });
+
+  listItems.appendChild(deleteButton);
+  newElements.appendChild(listItems);
+  document.getElementById("user").value = "";
+});
 
 // console.log(resultArray);
