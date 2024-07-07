@@ -2,6 +2,8 @@ let input = "turpentine and turtles";
 const vowels = ["a", "e", "i", "o", "u"];
 const resultArray = [];
 
+let userInput = document.getElementById("user");
+
 for (let inputIndex = 0; inputIndex < input.length; inputIndex++) {
   if (input[inputIndex] === "e") {
     resultArray.push(input[inputIndex]);
